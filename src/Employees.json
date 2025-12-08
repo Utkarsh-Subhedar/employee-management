@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "name": "Dhanesh Rankhamb",
+    "email": "Dhanesh.King@example.com",
+    "profile": "Super Admin",
+    "project": { "projectId": "P1001", "assignedRole": "Project Manager" }
+  },
+  {
+    "id": 2,
+    "name": "Rohit Patil",
+    "email": "rohit.patil@example.com",
+    "profile": "Team Leader",
+    "project": { "projectId": "P1022", "assignedRole": "Backend Engineer" }
+  },
+  {
+    "id": 3,
+    "name": "Sneha Kulkarni",
+    "email": "sneha.kul@example.com",
+    "profile": "Admin",
+    "project": { "projectId": "P1078", "assignedRole": "Lead Developer" }
+  },
+  {
+    "id": 4,
+    "name": "Amit Deshmukh",
+    "email": "amit.desh@example.com",
+    "profile": "Team Leader",
+    "project": { "projectId": "P1099", "assignedRole": "Frontend Engineer" }
+  },
+  {
+    "id": 5,
+    "name": "Priya Jadhav",
+    "email": "priya.j@example.com",
+    "profile": "Employee",
+    "project": { "projectId": "P1105", "assignedRole": "QA Analyst" }
+  },
+  {
+    "id": 6,
+    "name": "Sagar More",
+    "email": "sagar.more@example.com",
+    "profile": "Employee",
+    "project": { "projectId": "P1155", "assignedRole": "UI/UX Designer" }
+  },
+  {
+    "id": 7,
+    "name": "Nidhi Sharma",
+    "email": "nidhi.sharma@example.com",
+    "profile": "Employee",
+    "project": { "projectId": "P1177", "assignedRole": "Support Intern" }
+  }
+]
