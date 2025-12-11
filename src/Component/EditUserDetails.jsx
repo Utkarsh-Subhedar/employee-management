@@ -27,7 +27,7 @@ export default function HeadlessDemo({ data, hide, type }) {
     },
   });
   useLayoutEffect(() => {
-    if (data) {
+    if (data.length != 0) {
       setUserData({
         id: data.id,
         name: data.name,
@@ -92,7 +92,9 @@ export default function HeadlessDemo({ data, hide, type }) {
       } else if (type == "add") {
         addCard(userData);
       }
-      hide(e);
+      setTimeout(() => {
+        hide(e);
+      }, 0);
     }
   };
 
@@ -214,13 +216,7 @@ export default function HeadlessDemo({ data, hide, type }) {
               htmlFor="projectId"
               className="text-primary-50 font-semibold"
             >
-              Project ID{" "}
-              <span
-                className="text-sm text-red-600 ${
-"
-              >
-                *
-              </span>
+              Project ID <span className="text-sm text-red-600">*</span>
             </label>
             <InputText
               id="projectId"
@@ -254,7 +250,7 @@ export default function HeadlessDemo({ data, hide, type }) {
                 errors.role ? "ring-1 ring-red-600" : ""
               }`}
               value={userData.project.assignedRole}
-              disabled={data && userData.project.assignedRole}
+              disabled={type === "edit"}
               onChange={(e) => handleInput(e)}
             />
             <p

@@ -1,23 +1,32 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useState, useEffect } from "react";
 import { createContext } from "react";
-import Employees from "../Employees.json";
 
 export const Employeestore = createContext();
 
 const handleData = (state, action) => {
-  if (action.name == "add") {
-    return [...state, action.payload.userData];
-  } else if (action.name == "edit") {
-    const objectRemovedArray = state.filter(
-      (employee) => employee.id !== action.payload.userData.id
-    );
-    return [...objectRemovedArray, action.payload.userData];
+  if (action.name === "add") {
+    const newId = state.length + 1; // simple, correct, stable
+    return [...state, { ...action.payload.userData, id: newId }];
   }
+  if (action.name === "edit") {
+    return state.map((item) =>
+      item.id === action.payload.userData.id ? action.payload.userData : item
+    );
+  }
+
   return state;
 };
 
 const EmployeeContext = ({ children }) => {
-  const [employeeData, dispatch] = useReducer(handleData, Employees);
+  const [employeeData, dispatch] = useReducer(
+    handleData,
+    JSON.parse(localStorage.getItem("userData"))
+      ? JSON.parse(localStorage.getItem("userData"))
+      : []
+  );
+  useEffect(() => {
+    localStorage.setItem("userData", JSON.stringify(employeeData));
+  }, [employeeData]);
   const addCard = (userData) => {
     dispatch({
       name: "add",
@@ -27,6 +36,7 @@ const EmployeeContext = ({ children }) => {
     });
   };
   const editCard = (userData) => {
+    console.log(userData);
     dispatch({
       name: "edit",
       payload: {

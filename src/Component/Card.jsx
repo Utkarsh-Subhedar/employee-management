@@ -1,7 +1,6 @@
 import { useState } from "react";
 import img from "../assets/blank-profile.jpg";
-import EditUserDetails from "./EditUserDetails";
-import { Dialog } from "primereact/dialog";
+import DialogBox from "./DialogBox";
 
 const Card = ({ EmployeeData }) => {
   const { name, id, email, profile, project } = EmployeeData;
@@ -80,18 +79,12 @@ const Card = ({ EmployeeData }) => {
         </div>
       </div>
       <div>
-        <Dialog
+        <DialogBox
+          type={"edit"}
+          data={EmployeeData}
           visible={visible}
-          modal
-          onHide={() => {
-            if (!visible) return;
-            setVisible(false);
-          }}
-          className="mx-5"
-          content={({ hide }) => (
-            <EditUserDetails data={EmployeeData} hide={hide} type={"edit"} />
-          )}
-        ></Dialog>
+          setVisible={setVisible}
+        />
       </div>
     </div>
   );
