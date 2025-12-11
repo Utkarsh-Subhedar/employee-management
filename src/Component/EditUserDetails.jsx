@@ -3,6 +3,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { RadioButton } from "primereact/radiobutton";
 import { Employeestore } from "../Store/EmployeeContext";
+import { toast } from "react-toastify";
 
 export default function HeadlessDemo({ data, hide, type }) {
   let errorStatement = "This field is required";
@@ -89,8 +90,10 @@ export default function HeadlessDemo({ data, hide, type }) {
     if (name && email && profile && project.projectId && project.assignedRole) {
       if (type == "edit") {
         editCard(userData);
+        toast.success("Card updated successfully");
       } else if (type == "add") {
         addCard(userData);
+        toast.success("Card added successfully");
       }
       setTimeout(() => {
         hide(e);
@@ -270,6 +273,7 @@ export default function HeadlessDemo({ data, hide, type }) {
             text
             className="p-3 w-full text-primary-50 border-2 border-white hover:bg-white"
           ></Button>
+
           <Button
             label="Cancel"
             onClick={(e) => hide(e)}

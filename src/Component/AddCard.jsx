@@ -4,9 +4,9 @@ const AddCard = () => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div>
+    <div className="p-1">
       <button
-        className=" p-2 bg-green-600 hover:bg-green-700 rounded-md text-white font-semibold text-md"
+        className="p-2 bg-green-600 hover:bg-green-700 rounded-md text-white font-semibold text-md"
         onClick={() => setVisible(true)}
       >
         Add

@@ -17,14 +17,14 @@ const CardsSection = () => {
         </div>
       ) : (
         <div
-          className="w-full h-full bg-teal-100 grid grid-cols-1
+          className="w-full bg-teal-100 grid grid-cols-1
             place-items-center mt-[25%] md:mt-[14%] py-5 space-y-5"
         >
           <span
             className="text-slate-800 capitalize text-base
             md:text-2xl font-semibold font-sans"
           >
-            Click below to add your very first card
+            "Get started by adding your first user"
           </span>
           <div>
             <AddCard />

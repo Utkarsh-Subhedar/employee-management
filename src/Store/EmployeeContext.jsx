@@ -5,13 +5,16 @@ export const Employeestore = createContext();
 
 const handleData = (state, action) => {
   if (action.name === "add") {
-    const newId = state.length + 1; // simple, correct, stable
+    const newId = state.length + 1;
     return [...state, { ...action.payload.userData, id: newId }];
   }
   if (action.name === "edit") {
     return state.map((item) =>
       item.id === action.payload.userData.id ? action.payload.userData : item
     );
+  }
+  if (action.name === "delete") {
+    return state.filter((item) => item.id !== action.payload.id);
   }
 
   return state;
@@ -36,7 +39,6 @@ const EmployeeContext = ({ children }) => {
     });
   };
   const editCard = (userData) => {
-    console.log(userData);
     dispatch({
       name: "edit",
       payload: {
@@ -44,9 +46,19 @@ const EmployeeContext = ({ children }) => {
       },
     });
   };
+  const deleteCard = (id) => {
+    dispatch({
+      name: "delete",
+      payload: {
+        id,
+      },
+    });
+  };
 
   return (
-    <Employeestore.Provider value={{ employeeData, addCard, editCard }}>
+    <Employeestore.Provider
+      value={{ employeeData, addCard, editCard, deleteCard }}
+    >
       {children}
     </Employeestore.Provider>
   );

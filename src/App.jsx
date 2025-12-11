@@ -6,11 +6,9 @@ import { Employeestore } from "./Store/EmployeeContext";
 function App() {
   const { employeeData } = useContext(Employeestore);
   return (
-    <div>
+    <div className="bg-sky-100 min-h-screen pt-1">
       <div
-        className={`${
-          employeeData.length > 0 ? "visible" : "hidden"
-        } m-3 text-end`}
+        className={`${employeeData.length > 0 ? "visible" : "hidden"} text-end`}
       >
         <AddCard />
       </div>

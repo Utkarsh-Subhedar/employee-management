@@ -1,18 +1,38 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import img from "../assets/blank-profile.jpg";
 import DialogBox from "./DialogBox";
+import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
+import { Employeestore } from "../Store/EmployeeContext";
 
 const Card = ({ EmployeeData }) => {
   const { name, id, email, profile, project } = EmployeeData;
   const [status, setStatus] = useState(true);
   const [visible, setVisible] = useState(false);
+
+  const { deleteCard } = useContext(Employeestore);
+
   const handleEditClick = () => {
     setVisible(true);
   };
   return (
     <div>
-      <div className="*:font-[Open_Sans] px-4 py-2 rounded-lg border flex-grow max-w-[350px] h-[370px] bg-white shadow-2xl">
-        <div className="flex justify-between">
+      <div className="*:font-[Open_Sans] px-4 py-2 rounded-lg flex-grow max-w-[350px] h-[363px] bg-white shadow-2xl relative">
+        <div className="absolute right-0 top-0 flex gap-[1px]">
+          <div
+            className="p-[4px] bg-green-100 hover:bg-green-200 border-black border rounded-sm rounded-bl-lg cursor-pointer"
+            onClick={handleEditClick}
+          >
+            <FaEdit className="text-md font-semibold text-white text-md !text-green-900" />
+          </div>
+          <div
+            className="p-[4px] bg-red-100 hover:bg-red-200 border-black border rounded-sm rounded-tr-lg cursor-pointer"
+            onClick={() => deleteCard(id)}
+          >
+            <MdDelete className="text-lg rounded-bl-md text-red-950 hover:rotate-x-45 duration-300" />
+          </div>
+        </div>
+        <div className="w-fit mt-1">
           <div className="rounded-md border border-black flex overflow-hidden">
             <span
               className={`${status ? "bg-green-600" : "bg-transparent"} ${
@@ -31,12 +51,6 @@ const Card = ({ EmployeeData }) => {
             >
               Inactive
             </span>
-          </div>
-          <div
-            className="text-md font-semibold cursor-pointer"
-            onClick={handleEditClick}
-          >
-            Edit
           </div>
         </div>
         <div className="flex flex-col justify-center items-center space-y-1">
