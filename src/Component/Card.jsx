@@ -4,6 +4,8 @@ import DialogBox from "./DialogBox";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { Employeestore } from "../Store/EmployeeContext";
+import { toast } from "react-toastify";
+import ConfirmationDialog from "./ConfirmationDialog";
 
 const Card = ({ EmployeeData }) => {
   const { name, id, email, profile, project } = EmployeeData;
@@ -15,6 +17,11 @@ const Card = ({ EmployeeData }) => {
   const handleEditClick = () => {
     setVisible(true);
   };
+
+  const handleDelete = () => {
+    toast.success("User deleted succesfully");
+    deleteCard(id);
+  };
   return (
     <div>
       <div className="*:font-[Open_Sans] px-4 py-2 rounded-lg flex-grow max-w-[350px] h-[363px] bg-white shadow-2xl relative">
@@ -25,12 +32,11 @@ const Card = ({ EmployeeData }) => {
           >
             <FaEdit className="text-md font-semibold text-white text-md !text-green-900" />
           </div>
-          <div
-            className="p-[4px] bg-red-100 hover:bg-red-200 border-black border rounded-sm rounded-tr-lg cursor-pointer"
-            onClick={() => deleteCard(id)}
-          >
-            <MdDelete className="text-lg rounded-bl-md text-red-950 hover:rotate-x-45 duration-300" />
-          </div>
+          <ConfirmationDialog handleDelete={handleDelete}>
+            <div className="p-[4px] bg-red-100 hover:bg-red-200 border-black border rounded-sm rounded-tr-lg cursor-pointer">
+              <MdDelete className="text-lg rounded-bl-md text-red-950 hover:rotate-x-45 duration-300" />
+            </div>
+          </ConfirmationDialog>
         </div>
         <div className="w-fit mt-1">
           <div className="rounded-md border border-black flex overflow-hidden">

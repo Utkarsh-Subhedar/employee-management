@@ -205,7 +205,7 @@ export default function HeadlessDemo({ data, hide, type }) {
             </label>
           </div>
           <p
-            className={`text-xs text-red-600 w-full ${
+            className={`!text-xs text-red-600 w-full ${
               errors.profile ? "block" : "invisible"
             }`}
           >
